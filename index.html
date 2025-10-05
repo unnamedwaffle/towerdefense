@@ -52,8 +52,255 @@
         });
     </script>
 
-    <div class="container mx-auto px-4 py-6 max-w-6xl">
-        <h1 class="text-4xl font-bold text-center mb-6 text-purple-400">🚀 Space Tower Defense 🛸</h1>
+    <!-- Intro Screen -->
+    <div id="introScreen" class="min-h-screen flex items-center justify-center bg-gradient-to-b from-purple-900 via-blue-900 to-black">
+        <div class="max-w-4xl mx-auto px-6 text-center">
+            <div class="mb-8">
+                <h1 class="text-6xl font-bold mb-4 bg-gradient-to-r from-purple-400 to-blue-400 bg-clip-text text-transparent">
+                    🚀 SPACE TOWER DEFENSE 🛸
+                </h1>
+                <div class="text-2xl text-yellow-400 mb-8">⭐ Defend the Galaxy ⭐</div>
+            </div>
+            
+            <div class="bg-black bg-opacity-50 rounded-lg p-8 mb-8 max-w-3xl mx-auto">
+                <div class="text-lg text-gray-200 leading-relaxed space-y-4">
+                    <p>In the distant future, humanity has expanded across the stars, but a malevolent alien alliance known as the <span class="text-red-400 font-bold">Zarkons</span> threatens to annihilate it. As the commander of the last bastion of hope, your mission is to defend key outposts from relentless waves of invaders.</p>
+                    
+                    <p>Build and upgrade advanced defense towers with unique abilities across diverse environments—from icy rings to molten planets. Collaborate with fellow commanders, unlock powerful abilities, and discover ancient relics to aid your fight.</p>
+                    
+                    <p class="text-yellow-300 font-semibold">Will you be the hero the galaxy needs, or will the Zarkons plunge it into darkness? Prepare your defenses; the fate of the universe is in your hands!</p>
+                </div>
+            </div>
+            
+            <div class="space-y-4">
+                <button id="startGameBtn" class="bg-green-600 hover:bg-green-500 text-white px-12 py-4 rounded-lg text-xl font-bold transition-all transform hover:scale-105">
+                    🎮 Start Mission
+                </button>
+                <div class="text-gray-400">Press any key to skip intro</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Wiki Screen -->
+    <div id="wikiScreen" class="min-h-screen bg-gray-900 text-white" style="display: none;">
+        <div class="container mx-auto px-4 py-6 max-w-6xl">
+            <div class="flex justify-between items-center mb-6">
+                <h1 class="text-4xl font-bold text-purple-400">📚 Command Center Database</h1>
+                <button id="backToGameBtn" class="bg-purple-600 hover:bg-purple-500 px-6 py-2 rounded-lg font-bold">
+                    ← Back to Game
+                </button>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                <!-- Tutorial Section -->
+                <div class="lg:col-span-3 bg-gray-800 rounded-lg p-6 mb-6">
+                    <h2 class="text-2xl font-bold text-blue-400 mb-4">🎯 Mission Briefing & Tutorial</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <h3 class="text-lg font-bold text-green-400 mb-2">Basic Operations</h3>
+                            <ul class="text-gray-300 space-y-1 text-sm">
+                                <li>• Select a tower type from the command panel</li>
+                                <li>• Click on grid squares to deploy towers</li>
+                                <li>• Towers automatically engage enemies in range</li>
+                                <li>• Click existing towers to sell for 75% refund</li>
+                                <li>• Start waves manually when ready</li>
+                                <li>• Prevent enemies from reaching your base (🏠)</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-bold text-yellow-400 mb-2">Strategic Tips</h3>
+                            <ul class="text-gray-300 space-y-1 text-sm">
+                                <li>• Mix tower types for balanced defense</li>
+                                <li>• Plasma towers chain to multiple enemies</li>
+                                <li>• Missile towers deal area damage</li>
+                                <li>• Shield generators slow enemy advance</li>
+                                <li>• Higher waves spawn stronger enemies</li>
+                                <li>• Save credits for emergency reinforcements</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tower Database -->
+                <div class="bg-gray-800 rounded-lg p-6">
+                    <h2 class="text-2xl font-bold text-blue-400 mb-4">🏗️ Tower Database</h2>
+                    <div class="space-y-4">
+                        <div class="bg-blue-700 rounded p-3">
+                            <div class="flex items-center justify-between mb-2">
+                                <span class="font-bold">⚡ Laser Tower</span>
+                                <span class="text-green-400">100 credits</span>
+                            </div>
+                            <div class="text-sm text-gray-200 space-y-1">
+                                <div>Damage: 25 | Range: 120</div>
+                                <div>Fire Rate: 0.8/sec</div>
+                                <div class="text-blue-200">Single-target precision weapon</div>
+                            </div>
+                        </div>
+
+                        <div class="bg-red-700 rounded p-3">
+                            <div class="flex items-center justify-between mb-2">
+                                <span class="font-bold">🚀 Missile Tower</span>
+                                <span class="text-green-400">150 credits</span>
+                            </div>
+                            <div class="text-sm text-gray-200 space-y-1">
+                                <div>Damage: 40 | Range: 100</div>
+                                <div>Fire Rate: 0.5/sec | AoE: 50</div>
+                                <div class="text-red-200">Explosive area damage</div>
+                            </div>
+                        </div>
+
+                        <div class="bg-green-700 rounded p-3">
+                            <div class="flex items-center justify-between mb-2">
+                                <span class="font-bold">🔆 Plasma Tower</span>
+                                <span class="text-green-400">200 credits</span>
+                            </div>
+                            <div class="text-sm text-gray-200 space-y-1">
+                                <div>Damage: 35 | Range: 110</div>
+                                <div>Fire Rate: 0.6/sec | Chain: 3</div>
+                                <div class="text-green-200">Lightning chains between enemies</div>
+                            </div>
+                        </div>
+
+                        <div class="bg-purple-700 rounded p-3">
+                            <div class="flex items-center justify-between mb-2">
+                                <span class="font-bold">💫 Ion Cannon</span>
+                                <span class="text-green-400">300 credits</span>
+                            </div>
+                            <div class="text-sm text-gray-200 space-y-1">
+                                <div>Damage: 100 | Range: 140</div>
+                                <div>Fire Rate: 0.2/sec</div>
+                                <div class="text-purple-200">Devastating single shots</div>
+                            </div>
+                        </div>
+
+                        <div class="bg-yellow-700 rounded p-3">
+                            <div class="flex items-center justify-between mb-2">
+                                <span class="font-bold">🛡️ Shield Generator</span>
+                                <span class="text-green-400">120 credits</span>
+                            </div>
+                            <div class="text-sm text-gray-200 space-y-1">
+                                <div>Damage: 15 | Range: 80</div>
+                                <div>Fire Rate: 1.2/sec | Slow: 50%</div>
+                                <div class="text-yellow-200">Slows enemies for 2 seconds</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Enemy Database -->
+                <div class="bg-gray-800 rounded-lg p-6">
+                    <h2 class="text-2xl font-bold text-red-400 mb-4">👾 Zarkon Forces</h2>
+                    <div class="space-y-4">
+                        <div class="bg-blue-800 rounded p-3">
+                            <div class="flex items-center justify-between mb-2">
+                                <span class="font-bold">🛸 Scout</span>
+                                <span class="text-yellow-400">+10 credits</span>
+                            </div>
+                            <div class="text-sm text-gray-200 space-y-1">
+                                <div>Health: 50 | Speed: 3</div>
+                                <div class="text-blue-200">Fast, light reconnaissance unit</div>
+                            </div>
+                        </div>
+
+                        <div class="bg-orange-800 rounded p-3">
+                            <div class="flex items-center justify-between mb-2">
+                                <span class="font-bold">⚔️ Fighter</span>
+                                <span class="text-yellow-400">+15 credits</span>
+                            </div>
+                            <div class="text-sm text-gray-200 space-y-1">
+                                <div>Health: 100 | Speed: 2</div>
+                                <div class="text-orange-200">Balanced assault craft</div>
+                            </div>
+                        </div>
+
+                        <div class="bg-red-800 rounded p-3">
+                            <div class="flex items-center justify-between mb-2">
+                                <span class="font-bold">💥 Bomber</span>
+                                <span class="text-yellow-400">+25 credits</span>
+                            </div>
+                            <div class="text-sm text-gray-200 space-y-1">
+                                <div>Health: 200 | Speed: 1</div>
+                                <div class="text-red-200">Heavy armored destroyer</div>
+                            </div>
+                        </div>
+
+                        <div class="bg-purple-800 rounded p-3">
+                            <div class="flex items-center justify-between mb-2">
+                                <span class="font-bold">👻 Stealth Ship</span>
+                                <span class="text-yellow-400">+20 credits</span>
+                            </div>
+                            <div class="text-sm text-gray-200 space-y-1">
+                                <div>Health: 80 | Speed: 2.5</div>
+                                <div class="text-purple-200">Cloaks periodically</div>
+                            </div>
+                        </div>
+
+                        <div class="bg-red-900 rounded p-3">
+                            <div class="flex items-center justify-between mb-2">
+                                <span class="font-bold">🛡️ Mothership</span>
+                                <span class="text-yellow-400">+50 credits</span>
+                            </div>
+                            <div class="text-sm text-gray-200 space-y-1">
+                                <div>Health: 500 | Speed: 0.8</div>
+                                <div class="text-red-200">Massive command vessel</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Maps & Mechanics -->
+                <div class="bg-gray-800 rounded-lg p-6">
+                    <h2 class="text-2xl font-bold text-green-400 mb-4">🗺️ Battlefield Intel</h2>
+                    <div class="space-y-4">
+                        <div>
+                            <h3 class="font-bold text-yellow-400 mb-2">Available Sectors</h3>
+                            <div class="text-sm text-gray-300 space-y-1">
+                                <div>• Nebula Gateway</div>
+                                <div>• Asteroid Maze</div>
+                                <div>• Quantum Spiral</div>
+                                <div>• Solar Flare Ridge</div>
+                                <div>• Wormhole Network</div>
+                                <div>• Galactic Crossroads</div>
+                                <div>• Cosmic Labyrinth</div>
+                            </div>
+                        </div>
+
+                        <div>
+                            <h3 class="font-bold text-blue-400 mb-2">Wave Progression</h3>
+                            <div class="text-sm text-gray-300 space-y-1">
+                                <div>• Waves 1-2: Scouts only</div>
+                                <div>• Waves 3-5: Scouts & Fighters</div>
+                                <div>• Waves 6-9: First 3 enemy types</div>
+                                <div>• Wave 10+: All enemies</div>
+                                <div>• Every 5th wave: Mothership</div>
+                                <div>• Enemy health scales +10% per wave</div>
+                            </div>
+                        </div>
+
+                        <div>
+                            <h3 class="font-bold text-purple-400 mb-2">Economy</h3>
+                            <div class="text-sm text-gray-300 space-y-1">
+                                <div>• Starting credits: 1000</div>
+                                <div>• Wave completion: +50</div>
+                                <div>• Tower sell value: 75%</div>
+                                <div>• Base health: 100</div>
+                                <div>• Damage per breach: -10</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Game Screen -->
+    <div id="gameScreen" class="container mx-auto px-4 py-6 max-w-6xl" style="display: none;">
+        <div class="flex justify-between items-center mb-6">
+            <h1 class="text-4xl font-bold text-purple-400">🚀 Space Tower Defense 🛸</h1>
+            <button id="showWikiBtn" class="bg-blue-600 hover:bg-blue-500 px-4 py-2 rounded-lg font-bold">
+                📚 Database
+            </button>
+        </div>
         
         <!-- Game Stats -->
         <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
@@ -149,6 +396,9 @@
                 this.gridSize = 40;
                 this.showSellDialog = false;
                 this.selectedTower = null;
+                this.mouseX = 0;
+                this.mouseY = 0;
+                this.showRange = false;
                 
                 // Game data
                 this.towerTypes = {
@@ -268,6 +518,18 @@
                     });
                 });
                 
+                // Mouse tracking for range display
+                this.canvas.addEventListener('mousemove', (e) => {
+                    const rect = this.canvas.getBoundingClientRect();
+                    this.mouseX = (e.clientX - rect.left) * (this.width / rect.width);
+                    this.mouseY = (e.clientY - rect.top) * (this.height / rect.height);
+                    this.showRange = this.selectedTowerType !== null;
+                });
+                
+                this.canvas.addEventListener('mouseleave', () => {
+                    this.showRange = false;
+                });
+                
                 // Canvas click for tower placement
                 this.canvas.addEventListener('click', (e) => {
                     const rect = this.canvas.getBoundingClientRect();
@@ -309,13 +571,19 @@
             }
             
             placeTower(x, y) {
-                // Check if clicking on existing tower
-                const clickedTower = this.getTowerAt(x, y);
-                if (clickedTower) {
-                    this.showSellDialog(clickedTower);
-                    return;
+                // Check if clicking on existing tower first
+                for (let i = 0; i < this.towers.length; i++) {
+                    const tower = this.towers[i];
+                    const distance = Math.sqrt((x - tower.x) ** 2 + (y - tower.y) ** 2);
+                    
+                    if (distance < 25) { // Increased click area for easier selection
+                        // Found a tower, show sell dialog
+                        this.sellTower(tower);
+                        return;
+                    }
                 }
                 
+                // No tower found, try to place new tower
                 if (!this.selectedTowerType) return;
                 
                 const towerData = this.towerTypes[this.selectedTowerType];
@@ -343,7 +611,7 @@
             
             getTowerAt(x, y) {
                 return this.towers.find(tower => 
-                    this.distance(x, y, tower.x, tower.y) < 20
+                    this.distance(x, y, tower.x, tower.y) < 25
                 );
             }
             
@@ -353,49 +621,24 @@
                 );
             }
             
-            showSellDialog(tower) {
+            sellTower(tower) {
                 const sellPrice = Math.floor(tower.cost * 0.75);
                 
-                // Create custom sell dialog
-                const modal = document.createElement('div');
-                modal.className = 'fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50';
-                modal.innerHTML = `
-                    <div class="bg-gray-800 p-6 rounded-lg shadow-lg max-w-sm w-full mx-4">
-                        <h3 class="text-xl font-bold text-white mb-4">💰 Sell Tower</h3>
-                        <div class="text-center mb-4">
-                            <div class="text-3xl mb-2">${this.getTowerSymbol(tower.type)}</div>
-                            <div class="text-lg text-white">${tower.type.charAt(0).toUpperCase() + tower.type.slice(1)} Tower</div>
-                            <div class="text-sm text-gray-400">Original Cost: ${tower.cost}</div>
-                            <div class="text-lg text-green-400 font-bold">Sell for: ${sellPrice} credits</div>
-                        </div>
-                        <div class="flex justify-end space-x-3">
-                            <button class="px-4 py-2 text-gray-400 hover:bg-gray-700 rounded cancel-btn">Cancel</button>
-                            <button class="px-4 py-2 bg-green-600 text-white hover:bg-green-500 rounded sell-btn">💰 Sell</button>
-                        </div>
-                    </div>
-                `;
+                // Simple confirmation using native browser dialog (works reliably)
+                const confirmed = window.confirm(
+                    `Sell ${tower.type.charAt(0).toUpperCase() + tower.type.slice(1)} Tower?\n\n` +
+                    `Original Cost: ${tower.cost} credits\n` +
+                    `Sell Price: ${sellPrice} credits (75% refund)`
+                );
                 
-                const cancelBtn = modal.querySelector('.cancel-btn');
-                const sellBtn = modal.querySelector('.sell-btn');
-                
-                cancelBtn.addEventListener('click', () => {
-                    document.body.removeChild(modal);
-                });
-                
-                sellBtn.addEventListener('click', () => {
-                    this.sellTower(tower, sellPrice);
-                    document.body.removeChild(modal);
-                });
-                
-                document.body.appendChild(modal);
-            }
-            
-            sellTower(tower, sellPrice) {
-                const index = this.towers.indexOf(tower);
-                if (index > -1) {
-                    this.towers.splice(index, 1);
-                    this.credits += sellPrice;
-                    this.updateUI();
+                if (confirmed) {
+                    // Remove tower from array
+                    const index = this.towers.indexOf(tower);
+                    if (index > -1) {
+                        this.towers.splice(index, 1);
+                        this.credits += sellPrice;
+                        this.updateUI();
+                    }
                 }
             }
             
@@ -693,8 +936,8 @@
                 // Draw path
                 this.drawPath();
                 
-                // Draw range for selected tower type
-                if (this.selectedTowerType) {
+                // Draw range for selected tower type at mouse position
+                if (this.showRange && this.selectedTowerType) {
                     this.drawTowerRange();
                 }
                 
@@ -750,23 +993,17 @@
             }
             
             drawTowerRange() {
-                this.canvas.addEventListener('mousemove', this.drawTowerRangeHandler.bind(this));
-            }
-            
-            drawTowerRangeHandler(e) {
                 if (!this.selectedTowerType) return;
                 
-                const rect = this.canvas.getBoundingClientRect();
-                const x = (e.clientX - rect.left) * (this.width / rect.width);
-                const y = (e.clientY - rect.top) * (this.height / rect.height);
-                
                 const tower = this.towerTypes[this.selectedTowerType];
+                const x = this.mouseX;
+                const y = this.mouseY;
                 
-                // Clear and redraw everything (simple approach)
-                this.render();
+                // Determine if the position is valid for placement
+                const isValid = !this.isOnPath(x, y, 25) && !this.isTooCloseToTower(x, y, 30);
                 
                 // Draw range circle
-                this.ctx.strokeStyle = this.isOnPath(x, y, 25) || this.isTooCloseToTower(x, y, 30) ? '#ff4444' : '#44ff44';
+                this.ctx.strokeStyle = isValid ? '#44ff44' : '#ff4444';
                 this.ctx.lineWidth = 2;
                 this.ctx.globalAlpha = 0.3;
                 this.ctx.beginPath();
@@ -893,6 +1130,34 @@
             }
         }
         
+        // Screen navigation
+        function showScreen(screenId) {
+            document.getElementById('introScreen').style.display = 'none';
+            document.getElementById('wikiScreen').style.display = 'none';
+            document.getElementById('gameScreen').style.display = 'none';
+            document.getElementById(screenId).style.display = 'block';
+        }
+
+        // Navigation event listeners
+        document.getElementById('startGameBtn').addEventListener('click', () => {
+            showScreen('gameScreen');
+        });
+
+        document.getElementById('showWikiBtn').addEventListener('click', () => {
+            showScreen('wikiScreen');
+        });
+
+        document.getElementById('backToGameBtn').addEventListener('click', () => {
+            showScreen('gameScreen');
+        });
+
+        // Skip intro with any key press
+        document.addEventListener('keydown', (e) => {
+            if (document.getElementById('introScreen').style.display !== 'none') {
+                showScreen('gameScreen');
+            }
+        });
+
         // Start the game
         const game = new Game();
     </script>
